@@ -24,17 +24,59 @@ bool Array::Add(int value) {
 
 // Insert value at specified index, shifting elements to the right
 bool Array::InsertAt(int index, int value) {
-    return false;
+	
+	if(index > size_ || index < 0){
+		return false;
+	}
+	
+	if(index == size_){
+		return true;
+	}
+	
+	
+	for(int i = size_; i > index; i--){
+		data_[i] = data_[i - 1];
+	}
+	
+	data_[index] = value;
+	size_++;
+	
+	return true;
+    
 }
 
 // Delete element at index, shifting elements left
 bool Array::DeleteAt(int index) {
-    return false;
+    
+    if(index >= size_ || index < 0){
+		return false;
+	}
+	
+	if(index == size_ - 1) {
+		size_--;
+		return true;
+	}
+	
+	for(int i = index; i < size_; i++){
+		data_[i] = data_[i + 1];
+	}
+    
+    size_--;
+    return true;
+    
 }
 
 // Update element at index
 bool Array::UpdateAt(int index, int new_value) {
+	
+	if(index >= size_ || index < 0) {
     return false;
+}
+   
+   data_[index] = new_value;
+  
+   return true;
+
 }
 
 // Print all elements
